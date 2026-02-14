@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: obsapp
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - name: obsapp
+          image: eyupyayan/observability-app:1.1
+          envFrom:
+            - configMapRef:
+                name: obsapp-config

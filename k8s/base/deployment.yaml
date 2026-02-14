@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: obsapp
+  labels:
+    app: obsapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: obsapp
+  template:
+    metadata:
+      labels:
+        app: obsapp
+    spec:
+      containers:
+        - name: obsapp
+          image: eyupyayan/observability-app:1.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: obsapp-config
+            - secretRef:
+                name: obsapp-secret
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 8000
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi

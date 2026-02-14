@@ -1,0 +1,14 @@
+prometheus:
+  prometheusSpec:
+    # Viktig: tillat å plukke opp ServiceMonitors uten å være låst til Helm release labels
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+
+    # La Prometheus finne ServiceMonitors i alle namespaces (dev/prod)
+    serviceMonitorNamespaceSelector: {}
+    serviceMonitorSelector: {}
+    podMonitorNamespaceSelector: {}
+    podMonitorSelector: {}
+
+grafana:
+  adminPassword: "admin"   # bytt etterpå, dette er for lokal læring
