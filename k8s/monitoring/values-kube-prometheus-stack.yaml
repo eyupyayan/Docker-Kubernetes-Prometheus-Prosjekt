@@ -12,3 +12,7 @@ prometheus:
 
 grafana:
   adminPassword: "admin"   # bytt etterpå, dette er for lokal læring
+
+prometheus-node-exporter:
+  enabled: false
+
