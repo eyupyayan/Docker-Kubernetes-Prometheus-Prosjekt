@@ -7,4 +7,5 @@ helmCharts:
     releaseName: monitoring
     namespace: monitoring
     version: 81.6.7
+    includeCRDs: true
     valuesFile: values-kube-prometheus-stack.yaml
