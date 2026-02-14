@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: obsapp-dev
+  name: dev
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: REPO_URL
-    targetRevision: TARGET_REVISION
+    repoURL: https://github.com/eyupyayan/Docker-Kubernetes-Prometheus-Prosjekt.git
+    targetRevision: master
     path: k8s/overlays/dev
   destination:
     server: https://kubernetes.default.svc
-    namespace: obsapp-dev
+    namespace: dev
   syncPolicy:
     automated:
       prune: true
